@@ -1,0 +1,19 @@
+{
+  "name": "forge-potree-demo",
+  "version": "0.0.1",
+  "description": "Sample Autodesk Forge application showing the use of Potree pointclouds in the viewer.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "autodesk",
+    "forge",
+    "express"
+  ],
+  "author": "Petr Broz <petr.broz@autodesk.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "forge-server-utils": "^8.0.13"
+  }
+}
