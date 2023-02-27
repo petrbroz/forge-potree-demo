@@ -22,7 +22,11 @@ async function initViewer(container) {
                 extensions: ['PotreeExtension']
             };
             const viewer = new Autodesk.Viewing.GuiViewer3D(container, config);
-            viewer.start();
+            viewer.start(null, null, null, null, {
+                webglInitParams: {
+                    useWebGL2: false
+                }
+            });
             resolve(viewer);
         });
     });
@@ -43,12 +47,8 @@ async function initOverlay(viewer) {
     const models = await getModels();
     $('#overlay > .loading').remove();
     const $models = $('#models');
-    for (const [bucketKey, bucketModels] of Object.entries(models)) {
-        const $group = $(`<optgroup label="${bucketKey}"></optgroup>`);
-        for (const model of bucketModels) {
-            $group.append(`<option value="${model.urn}">${model.name}</option>`);
-        }
-        $models.append($group);
+    for (const model of models) {
+        $models.append(`<option value="${model.urn}">${model.name}</option>`);
     }
     $models.on('change', function () { openModel(viewer, $models.val()); });
     $models.trigger('change');

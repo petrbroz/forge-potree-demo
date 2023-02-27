@@ -1,6 +1,6 @@
 # forge-potree-demo
 
-> Sample Autodesk Forge application showing the use of Potree pointclouds in the viewer.
+> Sample APS application showing the use of Potree pointclouds in the viewer.
 
 ![Screenshot](./screenshot.png)
 
@@ -9,8 +9,9 @@
 - clone the repository
 - install Node.js dependencies: `yarn install`
 - configure the following env. variables:
-  - `FORGE_CLIENT_ID` - your Forge application client ID
-  - `FORGE_CLIENT_SECRET` - your Forge application client secret
+  - `APS_CLIENT_ID` - your APS application client ID
+  - `APS_CLIENT_SECRET` - your APS application client secret
+  - `APS_BUCKET` - APS bucket with designs to view
 - run the serve: `yarn start`
 
 When using Visual Studio Code, consider adding the following configuration to your _.vscode/launch.json_:
@@ -28,8 +29,9 @@ When using Visual Studio Code, consider adding the following configuration to yo
             ],
             "program": "${workspaceFolder}/server.js",
             "env": {
-                "FORGE_CLIENT_ID": "<your Forge application client ID>",
-                "FORGE_CLIENT_SECRET": "<your Forge application client secret>"
+                "APS_CLIENT_ID": "<your APS application client ID>",
+                "APS_CLIENT_SECRET": "<your APS application client secret>",
+                "APS_BUCKET": "<your APS bucket>"
             }
         }
     ]

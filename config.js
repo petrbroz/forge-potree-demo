@@ -1,15 +1,14 @@
-const { FORGE_CLIENT_ID, FORGE_CLIENT_SECRET, PORT } = process.env;
+const { APS_CLIENT_ID, APS_CLIENT_SECRET, APS_BUCKET, PORT } = process.env;
 
-if (!FORGE_CLIENT_ID || !FORGE_CLIENT_SECRET) {
+if (!APS_CLIENT_ID || !APS_CLIENT_SECRET || !APS_BUCKET) {
     console.warn('Some of the following environment variables are missing:');
-    console.warn('FORGE_CLIENT_ID, FORGE_CLIENT_SECRET');
+    console.warn('APS_CLIENT_ID, APS_CLIENT_SECRET, APS_BUCKET');
     process.exit(1);
 }
 
 module.exports = {
     port: parseInt(PORT) || 3000,
-    forge: {
-        client_id: FORGE_CLIENT_ID,
-        client_secret: FORGE_CLIENT_SECRET
-    }
+    client_id: APS_CLIENT_ID,
+    client_secret: APS_CLIENT_SECRET,
+    bucket: APS_BUCKET
 };

@@ -1,33 +1,21 @@
 const express = require('express');
 const { DataManagementClient, urnify } = require('forge-server-utils');
-const config = require('../../config');
+const config = require('../../config.js');
 
-let dataManagementClient = new DataManagementClient({ client_id: config.forge.client_id, client_secret: config.forge.client_secret });
+let dataManagementClient = new DataManagementClient({ client_id: config.client_id, client_secret: config.client_secret });
 let router = express.Router();
 
 // GET /api/data/models
 // Lists URNs and names of all available Forge models, grouped by their buckets
-router.get('/models', async function (req, res) {
+router.get('/models', async function (req, res, next) {
     try {
-        let results = {};
-        let subtasks = [];
-        const buckets = await dataManagementClient.listBuckets();
-        for (const bucket of buckets) {
-            results[bucket.bucketKey] = [];
-            subtasks.push(dataManagementClient.listObjects(bucket.bucketKey).then(objects => {
-                for (const obj of objects) {
-                    results[obj.bucketKey].push({
-                        name: obj.objectKey,
-                        urn: urnify(obj.objectId)
-                    });
-                }
-            }));
-        }
-        await Promise.all(subtasks);
-        res.json(results);
+        const objects = await dataManagementClient.listObjects(config.bucket);
+        res.json(objects.map(obj => ({
+            name: obj.objectKey,
+            urn: urnify(obj.objectId)
+        })));
     } catch (err) {
-        console.error(err);
-        res.status(400).send(err);
+        next(err);
     }
 });
 

@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-const config = require('./config');
+const config = require('./config.js');
 
 let app = express();
 app.use(express.static(path.join(__dirname, 'public')));
