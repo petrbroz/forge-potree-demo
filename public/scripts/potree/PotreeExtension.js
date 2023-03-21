@@ -46,6 +46,16 @@ class PotreeExtension extends Autodesk.Viewing.Extension {
             return Promise.resolve(this._pointclouds.get(name));
         }
         return new Promise((resolve, reject) => {
+            /**
+             * Customizes requests made by Potree.
+             * @param {XMLHttpRequest} xhr Request
+             * @returns {XMLHttpRequest}
+             */
+            Potree.customizeRequest = function (xhr) {
+                xhr.setRequestHeader('X-Authorization', 'Bearer ...');
+                return xhr;
+            }
+
             Potree.loadPointCloud(url, name, (ev) => {
                 const { pointcloud } = ev;
                 const { material } = pointcloud;

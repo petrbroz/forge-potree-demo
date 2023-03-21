@@ -1269,6 +1269,9 @@
 			{
 				console.log("Potree: Failed to load file! HTTP status " + xhr.status + ", file:" + hurl, event);
 			};
+			if (exports.customizeRequest) {
+				xhr = exports.customizeRequest(xhr);
+			}
 			xhr.send(null);
 		}
 	};
@@ -1385,6 +1388,9 @@
 				Global.numNodesLoading--;
 				console.error("Potree: Failed to load file.", xhr, url);
 			};
+			if (exports.customizeRequest) {
+				xhr = exports.customizeRequest(xhr);
+			}
 			xhr.send(null);
 		}
 
@@ -1599,6 +1605,9 @@
 					}
 				}
 			};
+			if (exports.customizeRequest) {
+				xhr = exports.customizeRequest(xhr);
+			}
 			xhr.send(null);
 		};
 
@@ -1622,6 +1631,9 @@
 					}
 				}
 			};
+			if (exports.customizeRequest) {
+				xhr = exports.customizeRequest(xhr);
+			}
 			xhr.send(null);
 		};
 
@@ -2005,7 +2017,9 @@
 				Global.numNodesLoading--;
 				console.error("Potree: Failed to load file.", xhr, url);
 			};
-
+			if (exports.customizeRequest) {
+				xhr = exports.customizeRequest(xhr);
+			}
 			xhr.send(null);
 		};
 
@@ -2536,6 +2550,9 @@
 				Global.numNodesLoading--;
 				console.log("Potree: LASLAZLoader failed to load file, " + xhr.status + ", file: " + url);
 			};
+			if (exports.customizeRequest) {
+				xhr = exports.customizeRequest(xhr);
+			}
 			xhr.send(null);
 		}
 
@@ -2956,6 +2973,9 @@
 					Global.numNodesLoading--;
 					console.error("Potree: Failed to load file.", xhr.status, hurl, event);
 				};
+				if (exports.customizeRequest) {
+					xhr = exports.customizeRequest(xhr);
+				}
 				xhr.send(null);
 			}
 		}
@@ -3011,6 +3031,7 @@
 			var xhr = new XMLHttpRequest();
 			xhr.overrideMimeType("text/plain");
 			xhr.open("GET", url, true);
+			xhr.setRequestHeader('X-Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJ0eXBlIjoiQVVUSCIsInByb3ZpZGVyIjoiTE9DQUwiLCJ0b2tlblR5cGUiOiJBQ0NFU1MiLCJzdWIiOiJTdHJlYW1pbmdBZG1pbiIsImV4cCI6MTY3OTQxMTYyNywiaWF0IjoxNjc5NDA5ODI3fQ.c3TtbSIhrOflsbyFYqKkjcSpycECGSLi6syE_4oG3SZvx3O0wruFkt_3dJjkVb-DNRnyB4uFvtJzugRCNu6U6Q');
 			xhr.onload = function()
 			{
 				var data = JSON.parse(xhr.responseText);
@@ -3112,7 +3133,9 @@
 				console.log("Potree: loading file failed.", url, event);
 				callback();
 			};
-
+			if (exports.customizeRequest) {
+				xhr = exports.customizeRequest(xhr);
+			}
 			xhr.send(null);
 		}
 
@@ -3196,6 +3219,9 @@
 
 			try
 			{
+				if (exports.customizeRequest) {
+					xhr = exports.customizeRequest(xhr);
+				}
 				xhr.send(null);
 			}
 			catch (e)
@@ -3315,7 +3341,9 @@
 					}
 				}
 			};
-
+			if (exports.customizeRequest) {
+				xhr = exports.customizeRequest(xhr);
+			}
 			xhr.send(null);
 		}
 
@@ -7959,6 +7987,9 @@ void main()
 				Global.numNodesLoading--;
 				console.log("Potree: Failed to load file, " + xhr.status + ", file: " + url);
 			};
+			if (exports.customizeRequest) {
+				xhr = exports.customizeRequest(xhr);
+			}
 			xhr.send(null);
 		}
 
@@ -8063,7 +8094,9 @@ void main()
 					callback(null);
 				}
 			};
-
+			if (exports.customizeRequest) {
+				xhr = exports.customizeRequest(xhr);
+			}
 			xhr.send(null);
 		};
 
@@ -8223,7 +8256,9 @@ void main()
 					type: "hierarchy_loaded"
 				});
 			};
-
+			if (exports.customizeRequest) {
+				xhr = exports.customizeRequest(xhr);
+			}
 			xhr.send(null);
 		};
 
